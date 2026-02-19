@@ -132,7 +132,7 @@ export default function Home() {
         <div className="lp-dark-overlay lp-overlay-heavy" />
         <div className="lp-love-content lp-content-right">
           <span className="lp-num-tag">02</span>
-          <h3 className="lp-love-title">Menggemaskan</h3>
+          <h3 className="lp-love-title">gemas bangetttttttzz</h3>
           <p className="lp-love-text">
             Beneran deh, kamu tuh emang aslinya lucu banget. dari cara kamu ngomong, bercanda,
             dan kalau lagi ngambek dikit pun malah makin gemas, pas awawawawawawa lucu juga
