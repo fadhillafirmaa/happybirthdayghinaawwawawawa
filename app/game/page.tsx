@@ -390,7 +390,7 @@ export default function HadiahPage() {
                     </div>
                 ) : (
                     <div style={{ background: "rgba(255,255,255,0.05)", border: "1.5px solid rgba(255,255,255,0.15)", borderRadius: 24, padding: "2rem", backdropFilter: "blur(20px)" }}>
-                        <p style={{ textAlign: "center", color: "rgba(255,255,255,0.45)", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "2px", marginBottom: "0.5rem" }}>{timeLeft.expired ? "🎉 waktunya ambil hadiah!" : "⏳ countdown"}</p>
+                        <p style={{ textAlign: "center", color: "rgba(255,255,255,0.45)", textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: "2px", marginBottom: "0.5rem" }}>{timeLeft.expired ? " waktunya ambil hadiah!" : "⏳ countdown"}</p>
                         <p style={{ textAlign: "center", fontSize: "1.2rem", color: "#fff", fontStyle: "italic", marginBottom: "1.5rem" }}>{formatDateDisplay(targetDate)}</p>
                         {!timeLeft.expired && (
                             <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
