@@ -297,6 +297,14 @@ export default function HadiahPage() {
 
     const handleEdit = () => { setIsEditing(true); };
 
+    // RESET TANGGAL (hapus dari Firestore)
+    const handleResetDate = async () => {
+        if (!confirm("Reset tanggal? Kalender akan muncul lagi.")) return;
+        await setDoc(doc(db, "settings", "hadiah"), { tanggal: "" }, { merge: true });
+        setTargetDate("");
+        setTempDate("");
+    };
+
     // 4. COMPRESS & UPLOAD FOTO KE FIRESTORE (base64)
     const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -392,7 +400,10 @@ export default function HadiahPage() {
                                 <CountdownCard label="detik" value={timeLeft.seconds} />
                             </div>
                         )}
-                        <button onClick={handleEdit} style={{ marginTop: "1.5rem", width: "100%", background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.5)", borderRadius: 50, padding: "0.6rem", cursor: "pointer" }}>edit tanggal</button>
+                        <div style={{ display: "flex", gap: "0.8rem", marginTop: "1.5rem" }}>
+                            <button onClick={handleEdit} style={{ flex: 1, background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.5)", borderRadius: 50, padding: "0.6rem", cursor: "pointer" }}>edit tanggal</button>
+                            <button onClick={handleResetDate} style={{ flex: 1, background: "rgba(255,80,80,0.1)", border: "1px solid rgba(255,80,80,0.2)", color: "#ff8080", borderRadius: 50, padding: "0.6rem", cursor: "pointer" }}>reset tanggal</button>
+                        </div>
                     </div>
                 )}
             </div>
