@@ -202,7 +202,7 @@ export default function Home() {
 
         <div className="lp-game-content">
           <p className="lp-game-label">psst, ada sesuatu buat kamu ✨</p>
-          <h2 className="lp-game-title">mau main<br /><em>game</em> ga?</h2>
+          <h2 className="lp-game-title">mau ambil<br /><em>hadiah?</em></h2>
           <div className="lp-game-btns">
             <button className="lp-btn-yes" onClick={() => router.push("/game")}>
               mauu
