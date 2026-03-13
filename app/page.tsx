@@ -110,82 +110,85 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== SECTION 4: #1 Excited ===== */}
+      {/* ===== SECTION 4: #1 My Sunshine ===== */}
       <section className="lp-love-section">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/excited.jpeg" alt="Excited" className="lp-full-bg lp-bg-dim" />
+        <img src="/photos/excited.jpeg" alt="My Sunshine" className="lp-full-bg lp-bg-dim" />
         <div className="lp-love-content lp-content-left">
           <span className="lp-num-tag">01</span>
-          <h3 className="lp-love-title">Anaknya Excited Banget</h3>
+          <h3 className="lp-love-title">My Sunshine</h3>
           <p className="lp-love-text">
-            pas kamu nyeritain sesuatu atau aku nyeritain sesuatu reaksi nya excited bangettt,
-            responnya juga lucuwuwuw jadi aku merasa di hargai banget setiap aku cerita.
-            apalagi kalau kamu minta tilipun itu aku seneng bangettt nyehehehe
+            aku seneng kamu bisa selalu jadi sunshine buat aku jadi seseorang yang menghangatkan hati aku,
+            dengan wajah ceria kamu tiap ketemu, bunyi bunyian lucu awawawawa itu, kalaupun aku lagi ada masalah,
+            kalau kamu datang dengan wajah excited kaya kita ketemu terus itu,
+            aku bener bener merasa ada loh seseorang yang emang beneran nungguin aku
           </p>
         </div>
       </section>
 
-      {/* ===== SECTION 5: #2 Gemas ===== */}
+      {/* ===== SECTION 5: #2 The Effort Behind Every Hello ===== */}
       <section className="lp-love-section">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/gemas.jpg" alt="Gemas" className="lp-full-bg lp-bg-dim" />
+        <img src="/photos/gemas.jpg" alt="The Effort" className="lp-full-bg lp-bg-dim" />
         <div className="lp-dark-overlay lp-overlay-heavy" />
         <div className="lp-love-content lp-content-right">
           <span className="lp-num-tag">02</span>
-          <h3 className="lp-love-title">gemas bangetttttttzz</h3>
+          <h3 className="lp-love-title">The Effort Behind Every &apos;Hello&apos;</h3>
           <p className="lp-love-text">
-            Beneran deh, kamu tuh emang aslinya lucu banget. dari cara kamu ngomong, bercanda,
-            dan kalau lagi ngambek dikit pun malah makin gemas, pas awawawawawawa lucu juga
-            MENG GE MAS KAN BA NGET AWAWAWAWAWAW hiiiih gemas aku tau ndak (.\_/.)
+            Aku seneng kamu selalu put effort untuk tiap kita ketemu, sadar ga sadar kamu selalu ngelakuin ituu,
+            kaya dandan secantik mungkin (walaupin kamu emang uda cantik xixi), terus kalo bole jujur aku pernah
+            pas buka hp kamu, notes hp nya masi kebuka, isinya ada empat atau lima kalimat yang isinya itu topik
+            yang kamu siapin untuk obrolan kita waktu ituu, aku seneng dan terharu waktu itu cuma aku gamau
+            keliatan aja, aku ngerasa jarang ada yang put effort juga buat aku, makasi yaaa cinta
           </p>
         </div>
       </section>
 
-      {/* ===== SECTION 6: #3 Parfum ===== */}
+      {/* ===== SECTION 6: #3 The Woman Who Can Conquer Anything ===== */}
       <section className="lp-love-section">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/18d245f9-d65f-4b5f-ade9-cc97eb68e274.png" alt="Wangi" className="lp-full-bg lp-bg-dim" />
+        <img src="/photos/18d245f9-d65f-4b5f-ade9-cc97eb68e274.png" alt="Conquer" className="lp-full-bg lp-bg-dim" />
         <div className="lp-dark-overlay lp-overlay-heavy" />
         <div className="lp-love-content lp-content-left">
           <span className="lp-num-tag">03</span>
-          <h3 className="lp-love-title">Parfumnya Wangi</h3>
+          <h3 className="lp-love-title">The Woman Who Can Conquer Anything</h3>
           <p className="lp-love-text">
-            aku suka banget sama wanginya plis tolong help, wangi alchemist powder powder apa itu namanya aku lupa hehe
-            bawaannya pengen aku pelukkkkkk. kalau ada aku ke ohsome aku pasti cari parfum itu pas magang kemarinnn
-            karena aku kangenzzzz
+            Aku bangga punya pasangan yang benar benar bisa apa apa sendiri,
+            mungkin karena kamu anak pertama yang mau gamau harus ngeraba semuanya sendirian,
+            tapi hal itu yang bikin aku ngerasa kamu adalah orang yang bikin aku bangga
           </p>
         </div>
       </section>
 
-      {/* ===== SECTION 7: #4 Tulus ===== */}
+      {/* ===== SECTION 7: #4 The Only Place You Can Lean On ===== */}
       <section className="lp-love-section">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/tulus.jpg" alt="Tulus" className="lp-full-bg lp-bg-dim" />
+        <img src="/photos/tulus.jpg" alt="Lean On" className="lp-full-bg lp-bg-dim" />
         <div className="lp-dark-overlay lp-overlay-heavy" />
         <div className="lp-love-content lp-content-center">
           <span className="lp-num-tag">04</span>
-          <h3 className="lp-love-title">Tulus</h3>
+          <h3 className="lp-love-title">The Only Place You Can Lean On</h3>
           <p className="lp-love-text">
-            dimataku kamu tulus bangettt,kayak peduli bgttt sama aku,
-            inget aku paskita tilipun dulu tbtb kamu nangis karena kamu make sure aku sayang ga sama kamu
-            jelas la sayang, masa aku nda sayang siii, pas itu aku ngerasa di hargain bgttt itu aku gabakal lupa tu
-            masi ada poto pas kamu abis nangis tu sama aku nyeheheheh
+            walau kamu semandiri itu dan setangguh itu, pasti juga butuh tempat bersandar,
+            jadi i feel honored karena kamu setuju, mau, nyaman untuk ngelepas mandirinya kamu ke aku,
+            kamu jadiin aku tempat bersandar setelah kamu jdi orang yang kuat dan ceria diluar
           </p>
         </div>
       </section>
 
-      {/* ===== SECTION 8: #5 Cantik ===== */}
+      {/* ===== SECTION 8: #5 In Your Mind, I am Seen ===== */}
       <section className="lp-love-section">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/cantik.jpg" alt="Cantik" className="lp-full-bg lp-bg-dim" />
+        <img src="/photos/cantik.jpg" alt="I am Seen" className="lp-full-bg lp-bg-dim" />
         <div className="lp-dark-overlay lp-overlay-heavy" />
         <div className="lp-love-content lp-content-left">
           <span className="lp-num-tag">05</span>
-          <h3 className="lp-love-title">Cantik Banget</h3>
+          <h3 className="lp-love-title">In Your Mind, I am Seen</h3>
           <p className="lp-love-text">
-            ti dak per lu di ta nya la gi, cantikna keterlaluann tapi cantiknya
-            nda dari luar aja, tapi dari dalam juga (anzayyyy). setiap pegi sama mu,
-            bawaannya senangggg aja terusss xixixixi love you sayanggggggg.
+            aku selalu ngerasa dilihat dan diingat sama kamu, banyak hal hal kecill yang aku sendiri bahkan
+            lupa pernah ngomongnya terus kamu ingat persis apa kata aku waktu ituu, aku seneng banget merasa
+            diingat, karena jujur aku selalu merasa dilewatkan untuk hal hal yang seperti itu (tp aku cool with that)
+            , cuma sekalinya hal hal kecil aku diingat aku merasa hangat dan seneng bangettt
           </p>
         </div>
       </section>

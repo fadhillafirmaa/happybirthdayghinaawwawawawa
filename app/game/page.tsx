@@ -375,6 +375,7 @@ export default function HadiahPage() {
             <div style={{ textAlign: "center", marginBottom: "2.5rem", position: "relative", zIndex: 10 }}>
                 <h1 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 900, fontSize: "3rem", color: "#fff", lineHeight: 1 }}>Pengambilan</h1>
                 <h2 style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "1.8rem", color: "rgba(255,255,255,0.65)" }}>Hadiah</h2>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "1rem", color: "rgba(255,255,255,0.45)", marginTop: "0.8rem", letterSpacing: "1px" }}>ayo kapan kita ketemuuu, tentukannnn</p>
             </div>
 
             {/* Date / Countdown Section */}
@@ -421,7 +422,7 @@ export default function HadiahPage() {
                     <div style={{ background: "rgba(255,255,255,0.05)", border: "1.5px solid rgba(255,255,255,0.15)", borderRadius: 24, padding: "2rem", backdropFilter: "blur(20px)" }}>
                         <img src={photo} alt="Hadiah" style={{ width: "100%", borderRadius: 16, marginBottom: "1.2rem", maxHeight: 400, objectFit: "cover" }} />
                         <div style={{ textAlign: "center" }}>
-                            <p style={{ color: "#fff", marginBottom: "1.2rem", fontStyle: "italic" }}>yeayyy udah ketemu hadiahnya! 🎉🥳</p>
+                            <p style={{ color: "#fff", marginBottom: "1.2rem", fontStyle: "italic" }}>yeayyy finally ketemuu sayanggg akuuuu! 🎉🥳</p>
                             <div style={{ display: "flex", gap: "0.8rem", justifyContent: "center" }}>
                                 <button onClick={() => setShowPhotoModal(true)} style={{ padding: "0.7rem 1.8rem", background: "rgba(255,255,255,0.1)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 50, cursor: "pointer" }}>foto ulang</button>
                                 <button onClick={handleDeletePhoto} style={{ padding: "0.7rem 1.8rem", background: "rgba(255,80,80,0.1)", color: "#ff8080", border: "1px solid rgba(255,80,80,0.2)", borderRadius: 50, cursor: "pointer" }}>hapus foto</button>
