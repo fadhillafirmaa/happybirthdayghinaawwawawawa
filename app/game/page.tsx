@@ -416,7 +416,7 @@ export default function HadiahPage() {
                             fontSize: "clamp(1.4rem, 4vw, 2rem)", color: "#fff",
                             lineHeight: 1.5, textShadow: "0 4px 30px rgba(0,0,0,0.5)"
                         }}>
-                            kado nya online dulu yaww,<br />yang fisik menyusul
+                            ayo tentuin kapan kita ketemuuwuwu
                         </p>
                         <button 
                             onClick={startExperience}
