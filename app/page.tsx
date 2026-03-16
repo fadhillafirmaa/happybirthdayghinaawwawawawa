@@ -171,7 +171,7 @@ export default function Home() {
           <p className="lp-love-text">
             aku seneng kamu bisa selalu jadi sunshine buat aku jadi seseorang yang menghangatkan hati aku,
             dengan wajah ceria kamu tiap ketemu, bunyi bunyian lucu awawawawa itu, kalaupun aku lagi ada masalah,
-            kalau kamu datang dengan wajah excited kaya kita ketemu terus itu,
+            kalau kamu datang dengan wajah excited kaya kita ketemu biasanya itu,
             aku bener bener merasa masalah nya hilang dan sadar kalo ada loh seseorang yang emang beneran nungguin aku.
           </p>
         </div>
