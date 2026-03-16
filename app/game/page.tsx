@@ -259,10 +259,22 @@ export default function HadiahPage() {
     const [showPhotoModal, setShowPhotoModal] = useState(false);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
+    const [hasStarted, setHasStarted] = useState(false);
     const audioRef = useRef<HTMLAudioElement>(null);
+
+    const startExperience = () => {
+        setHasStarted(true);
+        if (audioRef.current) {
+            audioRef.current.muted = false;
+            audioRef.current.volume = 1.0;
+            audioRef.current.play().catch(e => console.error("Playback failed:", e));
+        }
+    };
 
     // BACKGROUND MUSIC LOGIC
     useEffect(() => {
+        if (!hasStarted) return;
+
         const audio = audioRef.current;
         if (!audio) return;
 
@@ -270,41 +282,18 @@ export default function HadiahPage() {
         audio.loop = true;
 
         const attemptPlay = () => {
-            audio.play()
-                .then(() => {
-                    removeListeners();
-                })
-                .catch(() => {});
+            audio.play().catch(() => {});
         };
 
-        const removeListeners = () => {
-            window.removeEventListener("click", attemptPlay);
-            window.removeEventListener("keydown", attemptPlay);
-            window.removeEventListener("touchstart", attemptPlay);
-            window.removeEventListener("scroll", attemptPlay);
-            window.removeEventListener("mousemove", attemptPlay);
-        };
-
-        window.addEventListener("click", attemptPlay);
-        window.addEventListener("keydown", attemptPlay);
-        window.addEventListener("touchstart", attemptPlay);
-        window.addEventListener("scroll", attemptPlay);
-        window.addEventListener("mousemove", attemptPlay);
-
-        // Initial attempt
         attemptPlay();
 
-        // Aggressive retry
         const interval = setInterval(() => {
             if (audio.paused) attemptPlay();
             else clearInterval(interval);
         }, 1000);
 
-        return () => {
-            removeListeners();
-            clearInterval(interval);
-        };
-    }, []);
+        return () => clearInterval(interval);
+    }, [hasStarted]);
 
     // 1. LISTEN FIREBASE SECARA REAL-TIME
     useEffect(() => {
@@ -408,6 +397,42 @@ export default function HadiahPage() {
 
     return (
         <div style={{ minHeight: "100vh", background: "#080808", display: "flex", flexDirection: "column", alignItems: "center", padding: "3rem 1.5rem", position: "relative", overflow: "hidden" }}>
+            
+            {/* ===== START POPUP (FORCE INTERACTION) ===== */}
+            {!hasStarted && (
+                <div style={{
+                    position: "fixed", inset: 0, zIndex: 10000,
+                    background: "rgba(0,0,0,0.6)", backdropFilter: "blur(14px)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    padding: "2rem"
+                }}>
+                    <div style={{
+                        display: "flex", flexDirection: "column", alignItems: "center",
+                        textAlign: "center", gap: "2.5rem", maxWidth: 450,
+                        animation: "fadeInUp 0.8s ease both"
+                    }}>
+                        <p style={{
+                            fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+                            fontSize: "clamp(1.4rem, 4vw, 2rem)", color: "#fff",
+                            lineHeight: 1.5, textShadow: "0 4px 30px rgba(0,0,0,0.5)"
+                        }}>
+                            kado nya online dulu yaww,<br />yang fisik menyusul
+                        </p>
+                        <button 
+                            onClick={startExperience}
+                            style={{
+                                padding: "1rem 2.8rem", background: "#fff", color: "#111",
+                                border: "none", borderRadius: 50, fontSize: "1.05rem", fontWeight: 700,
+                                fontFamily: "'Playfair Display', serif", cursor: "pointer",
+                                boxShadow: "0 8px 30px rgba(255,255,255,0.25)"
+                            }}
+                        >
+                            okeiii
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <audio ref={audioRef} src="/musik.mp4" loop autoPlay playsInline />
             {/* Grain & Glow Overlay */}
             <div style={{ position: "fixed", inset: 0, backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`, pointerEvents: "none" }} />
@@ -508,6 +533,10 @@ export default function HadiahPage() {
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap');
                 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
                 @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-15px); }
+                }
             `}</style>
         </div>
     );

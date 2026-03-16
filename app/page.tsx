@@ -43,9 +43,21 @@ const rows = [
 export default function Home() {
   const router = useRouter();
   const [showPopup, setShowPopup] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const startExperience = () => {
+    setHasStarted(true);
+    if (audioRef.current) {
+      audioRef.current.muted = false;
+      audioRef.current.volume = 1.0;
+      audioRef.current.play().catch(e => console.error("Playback failed:", e));
+    }
+  };
+
   useEffect(() => {
+    if (!hasStarted) return;
+
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -53,44 +65,35 @@ export default function Home() {
     audio.loop = true;
 
     const attemptPlay = () => {
-      audio.play()
-        .then(() => {
-          removeListeners();
-        })
-        .catch(() => {});
+      audio.play().catch(() => { });
     };
 
-    const removeListeners = () => {
-      window.removeEventListener("click", attemptPlay);
-      window.removeEventListener("keydown", attemptPlay);
-      window.removeEventListener("touchstart", attemptPlay);
-      window.removeEventListener("scroll", attemptPlay);
-      window.removeEventListener("mousemove", attemptPlay);
-    };
-
-    window.addEventListener("click", attemptPlay);
-    window.addEventListener("keydown", attemptPlay);
-    window.addEventListener("touchstart", attemptPlay);
-    window.addEventListener("scroll", attemptPlay);
-    window.addEventListener("mousemove", attemptPlay);
-
-    // Initial attempt
     attemptPlay();
 
-    // Aggressive retry
     const interval = setInterval(() => {
       if (audio.paused) attemptPlay();
       else clearInterval(interval);
     }, 1000);
 
-    return () => {
-      removeListeners();
-      clearInterval(interval);
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [hasStarted]);
 
   return (
     <main className="lp-main">
+
+      {/* ===== START POPUP (FORCE INTERACTION) ===== */}
+      {!hasStarted && (
+        <div className="lp-start-overlay">
+          <div className="lp-start-box">
+            <p className="lp-start-text">
+              kado nya online dulu yaww,<br />yang fisik menyusullll nyehehehe
+            </p>
+            <button className="lp-btn-yes" onClick={startExperience}>
+              okeiii
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ===== BACKGROUND MUSIC ===== */}
       <audio ref={audioRef} src="/musik.mp4" loop autoPlay playsInline />
@@ -621,6 +624,29 @@ export default function Home() {
           .lp-love-text  { font-size: 0.95rem; }
           .lp-things-heading { font-size: clamp(3.5rem, 14vw, 7rem); }
           .lp-game-title { font-size: clamp(2.5rem, 10vw, 5rem); }
+        }
+
+        /* ===== START OVERLAY ===== */
+        .lp-start-overlay {
+          position: fixed; inset: 0; z-index: 10000;
+          background: rgba(0,0,0,0.6); backdrop-filter: blur(14px);
+          display: flex; align-items: center; justify-content: center;
+          padding: 2rem;
+        }
+        .lp-start-box {
+          display: flex; flex-direction: column; align-items: center;
+          text-align: center; gap: 2rem; max-width: 450px;
+          animation: fadeInUp 0.8s ease both;
+        }
+        .lp-start-emoji { font-size: 4rem; animation: float 3s ease-in-out infinite; }
+        .lp-start-text {
+          font-family: 'Playfair Display', serif; font-style: italic;
+          font-size: clamp(1.4rem, 4vw, 2rem); color: #fff;
+          line-height: 1.5; text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
         }
       `}</style>
     </main>
