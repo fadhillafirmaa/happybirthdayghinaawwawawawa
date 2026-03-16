@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 // All photos for carousel
@@ -43,9 +43,57 @@ const rows = [
 export default function Home() {
   const router = useRouter();
   const [showPopup, setShowPopup] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.volume = 1.0;
+    audio.loop = true;
+
+    const attemptPlay = () => {
+      audio.play()
+        .then(() => {
+          removeListeners();
+        })
+        .catch(() => {});
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener("click", attemptPlay);
+      window.removeEventListener("keydown", attemptPlay);
+      window.removeEventListener("touchstart", attemptPlay);
+      window.removeEventListener("scroll", attemptPlay);
+      window.removeEventListener("mousemove", attemptPlay);
+    };
+
+    window.addEventListener("click", attemptPlay);
+    window.addEventListener("keydown", attemptPlay);
+    window.addEventListener("touchstart", attemptPlay);
+    window.addEventListener("scroll", attemptPlay);
+    window.addEventListener("mousemove", attemptPlay);
+
+    // Initial attempt
+    attemptPlay();
+
+    // Aggressive retry
+    const interval = setInterval(() => {
+      if (audio.paused) attemptPlay();
+      else clearInterval(interval);
+    }, 1000);
+
+    return () => {
+      removeListeners();
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <main className="lp-main">
+
+      {/* ===== BACKGROUND MUSIC ===== */}
+      <audio ref={audioRef} src="/musik.mp4" loop autoPlay playsInline />
 
       {/* ===== SECTION 1: HERO ===== */}
       <section className="lp-hero">
@@ -189,6 +237,22 @@ export default function Home() {
             lupa pernah ngomongnya terus kamu ingat persis apa kata aku waktu ituu, aku seneng banget merasa
             diingat, karena jujur aku selalu merasa dilewatkan untuk hal hal yang seperti itu (tp aku cool with that)
             , cuma sekalinya hal hal kecil aku diingat aku merasa hangat dan seneng bangettt
+          </p>
+        </div>
+      </section>
+
+      {/* ===== SECTION: SOOO... ===== */}
+      <section className="lp-sooo-section">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/photos/love.JPG" alt="sooo" className="lp-full-bg lp-bg-dim" />
+        <div className="lp-dark-overlay lp-overlay-heavy" />
+        <div className="lp-sooo-content">
+          <h2 className="lp-sooo-title">sooo...</h2>
+          <p className="lp-sooo-text">
+            thank you for coming into my life. you are actually making me smile and laugh,
+            thank you for your understanding, thank you for being my biggest supporter,
+            and thank you for caring about me rn. i really appreciate you so much and you
+            will always have a special place in my heart, i love you a lot.
           </p>
         </div>
       </section>
@@ -413,6 +477,35 @@ export default function Home() {
           font-size: clamp(0.95rem, 1.6vw, 1.18rem); color: rgba(255,255,255,0.85);
           line-height: 1.9; text-shadow: 0 2px 20px rgba(0,0,0,0.9); max-width: 540px;
           animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        /* ===== SOOO SECTION ===== */
+        .lp-sooo-section {
+          position: relative; width: 100%; height: 100vh;
+          overflow: hidden; display: flex;
+          align-items: center; justify-content: center;
+        }
+        .lp-sooo-content {
+          position: relative; z-index: 10;
+          display: flex; flex-direction: column;
+          align-items: center; text-align: center;
+          gap: 2rem; padding: 2rem 5vw; max-width: 700px;
+        }
+        .lp-sooo-title {
+          font-family: 'Playfair Display', serif; font-weight: 900;
+          font-style: italic;
+          font-size: clamp(4rem, 10vw, 9rem); color: #fff;
+          line-height: 1; text-shadow: 0 6px 50px rgba(0,0,0,0.7);
+          letter-spacing: -1px;
+          animation: fadeInUp 1s ease 0.2s both;
+        }
+        .lp-sooo-text {
+          font-family: 'Playfair Display', serif; font-style: italic;
+          font-size: clamp(1rem, 1.8vw, 1.25rem); color: rgba(255,255,255,0.9);
+          line-height: 2; text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+          text-align: justify;
+          max-width: 600px;
+          animation: fadeInUp 1s ease 0.5s both;
         }
 
         /* ===== SECTION 9: GAME PROMPT ===== */

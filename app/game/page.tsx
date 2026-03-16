@@ -259,6 +259,52 @@ export default function HadiahPage() {
     const [showPhotoModal, setShowPhotoModal] = useState(false);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
+    const audioRef = useRef<HTMLAudioElement>(null);
+
+    // BACKGROUND MUSIC LOGIC
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        audio.volume = 1.0;
+        audio.loop = true;
+
+        const attemptPlay = () => {
+            audio.play()
+                .then(() => {
+                    removeListeners();
+                })
+                .catch(() => {});
+        };
+
+        const removeListeners = () => {
+            window.removeEventListener("click", attemptPlay);
+            window.removeEventListener("keydown", attemptPlay);
+            window.removeEventListener("touchstart", attemptPlay);
+            window.removeEventListener("scroll", attemptPlay);
+            window.removeEventListener("mousemove", attemptPlay);
+        };
+
+        window.addEventListener("click", attemptPlay);
+        window.addEventListener("keydown", attemptPlay);
+        window.addEventListener("touchstart", attemptPlay);
+        window.addEventListener("scroll", attemptPlay);
+        window.addEventListener("mousemove", attemptPlay);
+
+        // Initial attempt
+        attemptPlay();
+
+        // Aggressive retry
+        const interval = setInterval(() => {
+            if (audio.paused) attemptPlay();
+            else clearInterval(interval);
+        }, 1000);
+
+        return () => {
+            removeListeners();
+            clearInterval(interval);
+        };
+    }, []);
 
     // 1. LISTEN FIREBASE SECARA REAL-TIME
     useEffect(() => {
@@ -362,6 +408,7 @@ export default function HadiahPage() {
 
     return (
         <div style={{ minHeight: "100vh", background: "#080808", display: "flex", flexDirection: "column", alignItems: "center", padding: "3rem 1.5rem", position: "relative", overflow: "hidden" }}>
+            <audio ref={audioRef} src="/musik.mp4" loop autoPlay playsInline />
             {/* Grain & Glow Overlay */}
             <div style={{ position: "fixed", inset: 0, backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`, pointerEvents: "none" }} />
             <div style={{ position: "fixed", top: "-20vh", left: "-20vw", width: "60vw", height: "60vw", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)", pointerEvents: "none" }} />
